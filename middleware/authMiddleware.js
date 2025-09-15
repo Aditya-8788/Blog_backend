@@ -1,11 +1,11 @@
-const jwt = require("jsonwebtoken");
+const { verifyToken, extractTokenFromRequest } = require("../utils/jwt");
 
 const protect = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const token = extractTokenFromRequest(req);
   if (!token) return res.status(401).json({ msg: "No token, unauthorized" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = verifyToken(token);
     req.user = decoded.id;
     next();
   } catch {

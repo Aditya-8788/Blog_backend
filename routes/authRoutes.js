@@ -16,8 +16,9 @@ router.post("/signup", async (req, res) => {
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ msg: "Email already in use" });
     const user = await User.create({ name, email, password });
+    const token = generateToken({ id: user._id });
     const safeUser = { _id: user._id, name: user.name, email: user.email };
-    res.json(safeUser);
+    res.json({ token, user: safeUser });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -57,5 +58,28 @@ router.get("/me", protect, async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+// Update profile (name, profilePic)
+router.put("/profile", protect, async (req, res) => {
+  try {
+    const { name, profilePic } = req.body || {};
+    const me = await User.findById(req.user);
+    if (!me) return res.status(404).json({ msg: "User not found" });
 
+    if (typeof name === 'string' && name.trim()) me.name = name.trim();
+    if (typeof profilePic === 'string') me.profilePic = profilePic; // expect base64 data URL or URL
+
+    await me.save();
+
+    const safeUser = {
+      _id: me._id,
+      name: me.name,
+      email: me.email,
+      bio: me.bio,
+      profilePic: me.profilePic,
+    };
+    res.json({ user: safeUser });
+  } catch (err) {
+    res.status(400).json({ error: err.message || 'Failed to update profile' });
+  }
+});
 module.exports = router;

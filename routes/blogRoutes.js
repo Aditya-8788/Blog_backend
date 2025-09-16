@@ -8,7 +8,9 @@ const router = express.Router();
 // Get blogs for the logged-in user
 router.get("/me", protect, async (req, res) => {
   try {
-    const blogs = await Blog.find({ user: req.user }).populate("user", "name");
+    const blogs = await Blog.find({ user: req.user })
+      .sort({ createdAt: -1 })
+      .populate("user", "name");
     res.json(blogs);
   } catch (err) {
     res.status(500).json({ error: "Server error" });
@@ -65,7 +67,9 @@ router.post("/", protect, async (req, res) => {
 // Get all blogs
 router.get("/", async (req, res) => {
   try {
-    const blogs = await Blog.find().populate("user", "name");
+    const blogs = await Blog.find()
+      .sort({ createdAt: -1 })
+      .populate("user", "name");
     if (req.user) {
       // If protect middleware ran earlier in a global use-case, but here it's open, we won't have req.user.
       // Keep behavior simple: if req.user present, add bookmarked flag from their list.

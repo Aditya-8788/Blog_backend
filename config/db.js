@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-const DEFAULT_LOCAL_URI = "mongodb://127.0.0.1:27017/blog";
+const DEFAULT_LOCAL_URI = process.env.NODE_ENV === "test"
+  ? "mongodb://127.0.0.1:27017/blogDB"
+  : "mongodb://127.0.0.1:27017/blog";
 
 async function attemptConnection(uri) {
   // Mongoose v8+ uses modern defaults; keep options minimal

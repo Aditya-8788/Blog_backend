@@ -86,7 +86,8 @@ This is a full-stack blog application built with the *MERN stack: a robust combi
 <img width="1916" height="915" alt="Screenshot 2025-09-19 000234" src="https://github.com/user-attachments/assets/97cf7c31-cc4f-48eb-9196-68e5690e2ab6" />
 <img width="1918" height="910" alt="Screenshot 2025-09-19 000253" src="https://github.com/user-attachments/assets/22df92a7-218b-44c8-9953-bcc348afb36d" />
 
-https://github.com/user-attachments/assets/0fe69724-cd8b-47dc-ba4b-004c8e26f26e
+https://github.com/user-attachments/assets/3cf681be-a26c-4788-8fab-b6dbbeabf051
+
 
 ### 1️⃣ Clone the repository
 (https://github.com/Aditya-8788?tab=repositories)

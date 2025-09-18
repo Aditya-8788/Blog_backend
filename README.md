@@ -64,7 +64,11 @@ This is a full-stack blog application built with the *MERN stack: a robust combi
 *  This section outlines the RESTful API endpoints for the blog application, detailing their function and required authentication status.**
 
 ---
+## 🤖 Use of AI Tools  
 
+- *Prompting*: Asked focused questions like “Generate a README for MERN app” and broke work into smaller steps.  
+- *Leverage*: Used AI for boilerplate code, debugging support, API documentation, and Postman setup.  
+- *Challenges*: Needed manual edits for configs, ensured compatibility with my code, and avoided over-dependence.
 ## Auth
 
 * POST /api/auth/signup → Register a new user.**
